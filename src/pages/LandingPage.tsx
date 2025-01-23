@@ -24,10 +24,10 @@ const LandingPage: React.FC = () => {
             </p>
 
             <div className="button-container">
-                <button onClick={() => window.open("/cookies/#/group1", "_blank")}>Open Group 1</button>
-                <button onClick={() => window.open("/cookies/#/group2", "_blank")}>Open Group 2</button>
-                <button onClick={() => window.open("/cookies/#/group3", "_blank")}>Open Group 3</button>
-                <button onClick={() => window.open("/cookies/#/group4", "_blank")}>Open Group 4</button>
+                <button onClick={() => window.open(`${window.location.origin}/cookies/#/group1`, "_blank")}>Open Group 1</button>
+                <button onClick={() => window.open(`${window.location.origin}/cookies/#/group2`, "_blank")}>Open Group 2</button>
+                <button onClick={() => window.open(`${window.location.origin}/cookies/#/group3`, "_blank")}>Open Group 3</button>
+                <button onClick={() => window.open(`${window.location.origin}/cookies/#/group4`, "_blank")}>Open Group 4</button>
             </div>
 
             <TriviaComponent />
