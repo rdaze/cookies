@@ -99,3 +99,10 @@ button:focus-visible {
 .popup-content button {
   margin: 0 1em; /* Space between buttons */
 }
+
+.landing-container {
+  max-width: 800px;  
+  width: 90%;       
+  padding: 20px;
+  border-radius: 10px;
+}

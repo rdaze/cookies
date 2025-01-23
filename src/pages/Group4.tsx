@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
-import SingleClickPopup from "../components/SingleClickPopup";
+import ComplexFearInducing from "../components/ComplexFearInducing";
 import { fetchWikiContent } from "../utils/fetchWikiContent";
 
-const SimplePage: React.FC = () => {
+const Group4: React.FC = () => {
   const [hasMadeDecision, setHasMadeDecision] = useState(false);
   const [content, setContent] = useState<string>("Lade Inhalt...");
 
@@ -21,7 +21,7 @@ const SimplePage: React.FC = () => {
 
   return (
     <>
-      {!hasMadeDecision && <SingleClickPopup onDecision={handleDecision} />}
+      {!hasMadeDecision && <ComplexFearInducing onDecision={handleDecision} />}
       {hasMadeDecision && (
         <Layout>
           <div dangerouslySetInnerHTML={{ __html: content }} />
@@ -31,4 +31,4 @@ const SimplePage: React.FC = () => {
   );
 };
 
-export default SimplePage;
+export default Group4;

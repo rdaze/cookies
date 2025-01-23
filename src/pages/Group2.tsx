@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
-import FearPopup from "../components/FearPopup";
+import SimpleFearInducing from "../components/SimpleFearInducing";
 import { fetchWikiContent } from "../utils/fetchWikiContent";
 
-const FearPage: React.FC = () => {
+const Group2: React.FC = () => {
   const [hasMadeDecision, setHasMadeDecision] = useState(false);
-  const [content, setContent] = useState<string>("Lade Inhalt...");
+  const [content, setContent] = useState<string>("Loading content...");
 
   React.useEffect(() => {
     const loadContent = async () => {
@@ -21,7 +21,7 @@ const FearPage: React.FC = () => {
 
   return (
     <>
-      {!hasMadeDecision && <FearPopup onDecision={handleDecision} />}
+      {!hasMadeDecision && <SimpleFearInducing onDecision={handleDecision} />}
       {hasMadeDecision && (
         <Layout>
           <div dangerouslySetInnerHTML={{ __html: content }} />
@@ -31,4 +31,4 @@ const FearPage: React.FC = () => {
   );
 };
 
-export default FearPage;
+export default Group2;

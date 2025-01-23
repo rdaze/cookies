@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
-import TimerPopup from "../components/TimerPopup";
+import SimpleNeutral from "../components/SimpleNeutral";
 import { fetchWikiContent } from "../utils/fetchWikiContent";
 
-const TimerPage: React.FC = () => {
+const Group1: React.FC = () => {
   const [hasMadeDecision, setHasMadeDecision] = useState(false);
   const [content, setContent] = useState<string>("Lade Inhalt...");
 
@@ -21,7 +21,7 @@ const TimerPage: React.FC = () => {
 
   return (
     <>
-      {!hasMadeDecision && <TimerPopup onDecision={handleDecision} />}
+      {!hasMadeDecision && <SimpleNeutral onDecision={handleDecision} />}
       {hasMadeDecision && (
         <Layout>
           <div dangerouslySetInnerHTML={{ __html: content }} />
@@ -30,4 +30,5 @@ const TimerPage: React.FC = () => {
     </>
   );
 };
-export default TimerPage;
+
+export default Group1;
