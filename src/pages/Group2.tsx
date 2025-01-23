@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import SimpleFearInducing from "../components/SimpleFearInducing";
 import { fetchWikiContent } from "../utils/fetchWikiContent";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
 const Group2: React.FC = () => {
   const [hasMadeDecision, setHasMadeDecision] = useState(false);
   const [content, setContent] = useState<string>("Loading content...");
 
-  React.useEffect(() => {
+  useEffect(() => {
     const loadContent = async () => {
       const wikiContent = await fetchWikiContent("Wernher_von_Braun");
       setContent(wikiContent);
@@ -15,9 +17,20 @@ const Group2: React.FC = () => {
     loadContent();
   }, []);
 
-  const handleDecision = () => {
+  const handleDecision = async (accepted: boolean, interactionTime: number) => {
     setHasMadeDecision(true);
-  };
+    try {
+      await addDoc(collection(db, "userInteractions"), {
+        group: "Group2",
+        decision: accepted ? "Accepted" : "Declined",
+        interactionTime: interactionTime,
+        timestamp: new Date()
+      });
+      console.log("Data successfully sent to Firebase Firestore");
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  };  
 
   return (
     <>

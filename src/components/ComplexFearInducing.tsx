@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 
-const ComplexFearInducing: React.FC<{ onDecision: (accepted: boolean) => void }> = ({ onDecision }) => {
+const ComplexFearInducing: React.FC<{ onDecision: (accepted: boolean, interactionTime: number) => void }> = ({ onDecision }) => {
   const [step, setStep] = useState(1);
   const [declineLoading, setDeclineLoading] = useState(false);
+  const [startTime] = useState<number>(Date.now());
 
-  const handleAccept = () => onDecision(true);
+  const handleAccept = () => {
+    const interactionTime = Date.now() - startTime;
+    onDecision(true, interactionTime);
+  };
 
   const handleDeclineStep = () => {
     if (step < 3) {
       setStep(step + 1);
     } else {
       setDeclineLoading(true);
-      setTimeout(() => onDecision(false), 3000);
+      setTimeout(() => {
+        const interactionTime = Date.now() - startTime;
+        onDecision(false, interactionTime);
+      }, 3000);
     }
   };
 
