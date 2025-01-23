@@ -7,7 +7,7 @@ const UserInteractionsTable: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = query(collection(db, "userInteractions"), orderBy("timestamp", "desc")); // 🔹 Sort by timestamp (newest first)
+      const q = query(collection(db, "userInteractions"), orderBy("timestamp", "desc")); // Sort by timestamp (newest first)
       const querySnapshot = await getDocs(q);
       const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setInteractions(data);
@@ -22,6 +22,7 @@ const UserInteractionsTable: React.FC = () => {
       <table>
         <thead>
           <tr>
+            <th>User ID</th>
             <th>Group</th>
             <th>Decision</th>
             <th>Interaction Time (ms)</th>
@@ -31,6 +32,7 @@ const UserInteractionsTable: React.FC = () => {
         <tbody>
           {interactions.map((entry) => (
             <tr key={entry.id}>
+              <td>{entry.userId}</td>
               <td>{entry.group}</td>
               <td>{entry.decision}</td>
               <td>{entry.interactionTime}</td>

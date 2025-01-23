@@ -5,9 +5,19 @@ import { fetchWikiContent } from "../utils/fetchWikiContent";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
+const getUserId = () => {
+  let userId = localStorage.getItem("userId");
+  if (!userId) {
+    userId = crypto.randomUUID();
+    localStorage.setItem("userId", userId);
+  }
+  return userId;
+};
+
 const Group2: React.FC = () => {
   const [hasMadeDecision, setHasMadeDecision] = useState(false);
   const [content, setContent] = useState<string>("Loading content...");
+  const userId = getUserId();
 
   useEffect(() => {
     const loadContent = async () => {
@@ -21,6 +31,7 @@ const Group2: React.FC = () => {
     setHasMadeDecision(true);
     try {
       await addDoc(collection(db, "userInteractions"), {
+        userId: userId,
         group: "Group2",
         decision: accepted ? "Accepted" : "Declined",
         interactionTime: interactionTime,
