@@ -5,7 +5,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => (
-  <div>
+  <div className="wikipage">
     <header>
       <h1>Wernher Magnus Maximilian Freiherr von Braun</h1>
     </header>

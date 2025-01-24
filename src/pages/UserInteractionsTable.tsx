@@ -17,7 +17,7 @@ const UserInteractionsTable: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="results">
       <h2>User Interaction Data</h2>
       <table>
         <thead>

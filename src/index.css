@@ -106,3 +106,11 @@ button:focus-visible {
   padding: 20px;
   border-radius: 10px;
 }
+
+.wikipage {
+  margin: 20px;
+}
+
+.results {
+  margin: 20px;
+}
