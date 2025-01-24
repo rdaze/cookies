@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ComplexNeutral: React.FC<{ onDecision: (accepted: boolean, interactionTime: number) => void }> = ({ onDecision }) => {
   const [step, setStep] = useState(1);
   const [declineLoading, setDeclineLoading] = useState(false);
-  const [startTime] = useState<number>(Date.now());
+  const [startTime, setStartTime] = useState<number>(Date.now());
+
+  useEffect(() => {
+    setStartTime(Date.now());
+  }, []);
 
   const handleAccept = () => {
     const interactionTime = Date.now() - startTime;
@@ -14,9 +18,9 @@ const ComplexNeutral: React.FC<{ onDecision: (accepted: boolean, interactionTime
     if (step < 3) {
       setStep(step + 1);
     } else {
+      const interactionTime = Date.now() - startTime;
       setDeclineLoading(true);
       setTimeout(() => {
-        const interactionTime = Date.now() - startTime;
         onDecision(false, interactionTime);
       }, 3000);
     }
